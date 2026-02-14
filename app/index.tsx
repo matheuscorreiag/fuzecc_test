@@ -1,9 +1,15 @@
-import { Text, View } from "react-native";
+import { useSplashRedirection } from "@/hooks/use-splash-redirection";
+import { Image, View } from "react-native";
 
-export default function Initial() {
+export default function SplashPage() {
+  useSplashRedirection();
+
   return (
-    <View className="bg-zinc-950 flex-1 items-center justify-center">
-      <Text className="text-white">Hellodsadsadads</Text>
+    <View className="bg-background flex-1 items-center justify-center">
+      <Image
+        source={require("../assets/images/icon.png")}
+        className="size-[113px]"
+      />
     </View>
   );
 }
