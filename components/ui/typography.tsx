@@ -9,7 +9,7 @@ function getFontFamily(weight: "normal" | "medium" | "bold") {
   const fontWeights = {
     normal: "Roboto_400Regular",
     medium: "Roboto_500Medium",
-    bold: "Roboto_900Black",
+    bold: "Roboto_700Bold",
   };
 
   return fontWeights[weight];
