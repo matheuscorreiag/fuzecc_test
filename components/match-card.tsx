@@ -1,7 +1,8 @@
 import { dayjs } from "@/libs/dayjs";
 import { formatMatchDate } from "@/libs/dayjs/format-match-date";
-import { Image, Pressable, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { twMerge } from "tailwind-merge";
+import { Opponents } from "./opponents";
 import { Typography } from "./ui/typography";
 
 type MatchCardProps = {
@@ -9,10 +10,10 @@ type MatchCardProps = {
   onPress: () => void;
   league: string;
   serie: string;
-  homeTeamName: string | null | undefined;
-  homeTeamImageUrl: string | null | undefined;
-  awayTeamName: string | null | undefined;
-  awayTeamImageUrl: string | null | undefined;
+  homeTeamName?: string | null;
+  homeTeamImageUrl?: string | null;
+  awayTeamName?: string | null;
+  awayTeamImageUrl?: string | null;
   live?: boolean;
 };
 
@@ -27,7 +28,8 @@ export function MatchCard({
   awayTeamImageUrl,
 }: MatchCardProps) {
   const matchDate = formatMatchDate(beginAt);
-  const isLive = !!beginAt && dayjs(beginAt).isValid() && dayjs(beginAt).isBefore(dayjs());
+  const isLive =
+    !!beginAt && dayjs(beginAt).isValid() && dayjs(beginAt).isBefore(dayjs());
 
   return (
     <Pressable
@@ -45,45 +47,12 @@ export function MatchCard({
         </Typography>
       </View>
 
-      <View className="flex-row items-center gap-5">
-        <View className="items-center gap-2.5">
-          {!homeTeamImageUrl && (
-            <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
-          )}
-          {!!homeTeamImageUrl && (
-            <Image
-              className="size-[60px]"
-              src={homeTeamImageUrl}
-              resizeMode="contain"
-            />
-          )}
-          <Typography
-            className="text-foreground max-w-[100px] "
-            numberOfLines={1}
-          >
-            {homeTeamName}
-          </Typography>
-        </View>
-        <Typography className="text-foreground/50">vs</Typography>
-        <View className="items-center gap-2.5">
-          {!awayTeamImageUrl && (
-            <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
-          )}
-          {!!awayTeamImageUrl && (
-            <Image
-              className="size-[60px]"
-              src={awayTeamImageUrl}
-              resizeMode="contain"
-            />
-          )}
-          <Typography
-            className="text-foreground max-w-[100px] "
-            numberOfLines={1}
-          >
-            {awayTeamName}
-          </Typography>
-        </View>
-      </View>
+      <Opponents
+        homeTeamName={homeTeamName}
+        homeTeamImageUrl={homeTeamImageUrl}
+        awayTeamName={awayTeamName}
+        awayTeamImageUrl={awayTeamImageUrl}
+      />
 
       <View className="border-t items-center border-gray-300 h-8 absolute flex-row left-0 bottom-0 w-full px-4 py-2">
         <View className="size-4 rounded-full bg-white mr-2" />
