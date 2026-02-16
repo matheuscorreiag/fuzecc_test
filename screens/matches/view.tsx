@@ -1,6 +1,7 @@
 import { MatchCard } from "@/components/match-card";
 import { Screen } from "@/components/ui/screen";
-import { FlatList } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import { View } from "react-native";
 import { useMatchesViewModel } from "./view-model";
 
 export function MatchesView() {
@@ -8,9 +9,9 @@ export function MatchesView() {
 
   return (
     <Screen title="Partidas">
-      <FlatList
+      <FlashList
         data={currentMatches}
-        contentContainerStyle={{ gap: 24 }}
+        ItemSeparatorComponent={() => <View className="h-10" />}
         keyExtractor={(match) => match.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item: match }) => (
