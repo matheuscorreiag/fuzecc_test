@@ -10,7 +10,7 @@ async function getCurrentMatches() {
 
 export function useCurrentMatches() {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["matches"],
+    queryKey: ["current-matches"],
     queryFn: getCurrentMatches,
   });
 
