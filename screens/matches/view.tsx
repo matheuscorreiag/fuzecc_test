@@ -2,6 +2,7 @@ import { LoadingSpinner } from "@/components/loading-spinner";
 import { MatchCard } from "@/components/match-card";
 import { Screen } from "@/components/ui/screen";
 import { FlashList } from "@shopify/flash-list";
+import { View } from "react-native";
 import { useMatchesViewModel } from "./view-model";
 
 export function MatchesView() {
@@ -27,6 +28,7 @@ export function MatchesView() {
         data={matches}
         keyExtractor={(match) => match.id.toString()}
         showsVerticalScrollIndicator={false}
+        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         refreshing={isRefreshing}
         onRefresh={onRefresh}
         renderItem={({ item: match }) => (
