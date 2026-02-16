@@ -3,8 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Match } from "../matches/types";
 
 async function getMatch(matchId: number) {
-  const response = await client.get<Match>(`/csgo/matches/${matchId}`);
-  return response.data;
+  try {
+    const response = await client.get<Match>(`/matches/${matchId}`);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
 }
 
 export function useMatch(matchId: number | null) {

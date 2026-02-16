@@ -14,8 +14,8 @@ export function Opponents({
   awayTeamImageUrl,
 }: OpponentsProps) {
   return (
-    <View className="flex-row items-center gap-5">
-      <View className="items-center gap-2.5">
+    <View className="flex-row items-center gap-5 justify-center">
+      <View className="items-center gap-2.5 w-[90px]">
         {!homeTeamImageUrl && (
           <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
         )}
@@ -26,15 +26,12 @@ export function Opponents({
             resizeMode="contain"
           />
         )}
-        <Typography
-          className="text-foreground max-w-[100px] "
-          numberOfLines={1}
-        >
+        <Typography className="text-foreground max-w-[100px]" numberOfLines={1}>
           {homeTeamName}
         </Typography>
       </View>
       <Typography className="text-foreground/50">vs</Typography>
-      <View className="items-center gap-2.5">
+      <View className="items-center gap-2.5 w-[90px]">
         {!awayTeamImageUrl && (
           <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
         )}
