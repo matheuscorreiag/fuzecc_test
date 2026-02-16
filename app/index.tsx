@@ -1,15 +1,5 @@
-import { useSplashRedirection } from "@/hooks/use-splash-redirection";
-import { Image, View } from "react-native";
+import { SplashView } from "@/screens/splash/view";
 
 export default function SplashPage() {
-  useSplashRedirection();
-
-  return (
-    <View className="bg-background flex-1 items-center justify-center">
-      <Image
-        source={require("../assets/images/icon.png")}
-        className="size-[113px]"
-      />
-    </View>
-  );
+  return <SplashView />;
 }
