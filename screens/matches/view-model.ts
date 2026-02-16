@@ -1,6 +1,6 @@
-import { Match } from "@/hooks/matches/types";
 import { useCurrentMatches } from "@/hooks/queries/use-current-matches";
 import { useUpcomingMatches } from "@/hooks/queries/use-upcoming-matches";
+import { Match } from "@/models/match";
 import { useRouter } from "expo-router";
 
 export function useMatchesViewModel() {

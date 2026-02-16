@@ -1,12 +1,12 @@
 import { client } from "@/libs/api/axios-client";
+import { Team } from "@/models/team";
 import { useQuery } from "@tanstack/react-query";
-import { MatchTeams } from "../matches/types";
 
 async function getMatchTeams(team1Id?: number, team2Id?: number) {
   try {
     const [team1Response, team2Response] = await Promise.all([
-      client.get<MatchTeams>(`/teams/${team1Id}`),
-      client.get<MatchTeams>(`/teams/${team2Id}`),
+      client.get<Team>(`/teams/${team1Id}`),
+      client.get<Team>(`/teams/${team2Id}`),
     ]);
 
     return {
