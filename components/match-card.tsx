@@ -1,3 +1,5 @@
+import { dayjs } from "@/libs/dayjs";
+import { formatMatchDate } from "@/libs/dayjs/format-match-date";
 import { Image, Pressable, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 import { Typography } from "./ui/typography";
@@ -24,7 +26,8 @@ export function MatchCard({
   awayTeamName,
   awayTeamImageUrl,
 }: MatchCardProps) {
-  const isLive = new Date(beginAt || "") < new Date();
+  const matchDate = formatMatchDate(beginAt);
+  const isLive = !!beginAt && dayjs(beginAt).isValid() && dayjs(beginAt).isBefore(dayjs());
 
   return (
     <Pressable
@@ -38,7 +41,7 @@ export function MatchCard({
         )}
       >
         <Typography weight="bold" className="text-xs text-foreground">
-          {isLive ? "AGORA" : "10/01"}
+          {isLive ? "AGORA" : matchDate}
         </Typography>
       </View>
 
