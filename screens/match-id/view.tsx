@@ -56,23 +56,26 @@ export function MatchIdView({ matchId }: MatchIdViewProps) {
 
             return (
               <View key={`row-${index}`} className="w-full flex-row gap-x-3">
-                {homePlayer && (
-                  <PlayerCard
-                    nickname={homePlayer?.name ?? "Nickname"}
-                    name={homePlayer?.name ?? "Nome Jogador"}
-                    imageUrl={homePlayer?.image_url}
-                    className="w-1/2"
-                  />
-                )}
-                {awayPlayer && (
-                  <PlayerCard
-                    nickname={awayPlayer?.name ?? "Nickname"}
-                    name={awayPlayer?.name ?? "Nome Jogador"}
-                    imageUrl={awayPlayer?.image_url}
-                    isOpponent
-                    className="w-1/2"
-                  />
-                )}
+                <View className="flex-1">
+                  {homePlayer && (
+                    <PlayerCard
+                      nickname={homePlayer?.name ?? "Nickname"}
+                      name={homePlayer?.name ?? "Nome Jogador"}
+                      imageUrl={homePlayer?.image_url}
+                    />
+                  )}
+                </View>
+
+                <View className="flex-1">
+                  {awayPlayer && (
+                    <PlayerCard
+                      nickname={awayPlayer?.name ?? "Nickname"}
+                      name={awayPlayer?.name ?? "Nome Jogador"}
+                      imageUrl={awayPlayer?.image_url}
+                      isOpponent
+                    />
+                  )}
+                </View>
               </View>
             );
           })}

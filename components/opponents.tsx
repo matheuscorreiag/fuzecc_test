@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { TeamBadge } from "./team-badge";
+import { Image } from "./ui/image";
 import { Typography } from "./ui/typography";
 
 type OpponentsProps = {
@@ -18,14 +18,26 @@ export function Opponents({
   return (
     <View className="flex-row items-center gap-5 justify-center">
       <View className="w-[90px] items-center gap-2.5">
-        <TeamBadge imageUrl={homeTeamImageUrl} />
+        <Image
+          imageUrl={homeTeamImageUrl}
+          resizeMode="contain"
+          containerClassName="size-[60px]"
+          placeholderClassName="rounded-full bg-[#C4C4C4]"
+          imageClassName="size-[60px]"
+        />
         <Typography className="max-w-[100px] text-foreground" numberOfLines={1}>
           {homeTeamName}
         </Typography>
       </View>
       <Typography className="text-foreground/50">vs</Typography>
       <View className="w-[90px] items-center gap-2.5">
-        <TeamBadge imageUrl={awayTeamImageUrl} />
+        <Image
+          imageUrl={awayTeamImageUrl}
+          resizeMode="contain"
+          containerClassName="size-[60px]"
+          placeholderClassName="rounded-full bg-[#C4C4C4]"
+          imageClassName="size-[60px]"
+        />
         <Typography className="max-w-[100px] text-foreground" numberOfLines={1}>
           {awayTeamName}
         </Typography>

@@ -1,15 +1,31 @@
 import { useEffect, useRef, useState } from "react";
-import { Animated, Easing, Image, View } from "react-native";
+import {
+  Animated,
+  Easing,
+  Image as RNImage,
+  View,
+  type ImageResizeMode,
+} from "react-native";
+import { twMerge } from "tailwind-merge";
 
-type TeamBadgeProps = {
+type LoadingImageProps = {
   imageUrl?: string | null;
+  containerClassName?: string;
+  placeholderClassName?: string;
+  imageClassName?: string;
+  resizeMode?: ImageResizeMode;
 };
 
-export function TeamBadge({ imageUrl }: TeamBadgeProps) {
+export function Image({
+  imageUrl,
+  containerClassName,
+  placeholderClassName,
+  imageClassName,
+  resizeMode = "cover",
+}: LoadingImageProps) {
   const [isLoaded, setIsLoaded] = useState(!imageUrl);
   const [hasError, setHasError] = useState(false);
   const pulseOpacity = useRef(new Animated.Value(1)).current;
-
   const shouldBlink = !!imageUrl && !isLoaded && !hasError;
 
   useEffect(() => {
@@ -48,19 +64,25 @@ export function TeamBadge({ imageUrl }: TeamBadgeProps) {
   }, [pulseOpacity, shouldBlink]);
 
   return (
-    <View className="relative size-[60px] items-center justify-center">
+    <View className={twMerge("relative", containerClassName)}>
       {(!imageUrl || !isLoaded || hasError) && (
         <Animated.View
-          className="size-[60px] rounded-full bg-[#C4C4C4]"
+          className={twMerge(
+            "absolute top-0 right-0 bottom-0 left-0 bg-[#C4C4C4]",
+            placeholderClassName,
+          )}
           style={{ opacity: shouldBlink ? pulseOpacity : 1 }}
         />
       )}
 
       {!!imageUrl && !hasError && (
-        <Image
-          className="absolute size-[60px]"
+        <RNImage
+          className={twMerge(
+            "absolute top-0 right-0 bottom-0 left-0",
+            imageClassName,
+          )}
           src={imageUrl}
-          resizeMode="contain"
+          resizeMode={resizeMode}
           onLoadEnd={() => setIsLoaded(true)}
           onError={() => {
             setHasError(true);

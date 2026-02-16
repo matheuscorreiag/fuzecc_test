@@ -1,5 +1,6 @@
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { twMerge } from "tailwind-merge";
+import { Image } from "./ui/image";
 import { Typography } from "./ui/typography";
 
 export type PlayerCardProps = {
@@ -44,17 +45,17 @@ export function PlayerCard({
 
       <View
         className={twMerge(
-          "absolute -top-2 right-3 bottom-4 rounded-lg w-[48px] h-[48px] bg-[#C8C8CC]",
+          "absolute -top-2 right-3 bottom-4 rounded-lg w-[48px] h-[48px]",
           isOpponent && "-top-2 left-3",
         )}
       >
-        {!!imageUrl && (
-          <Image
-            className="h-full w-full rounded-lg"
-            src={imageUrl}
-            resizeMode="cover"
-          />
-        )}
+        <Image
+          imageUrl={imageUrl}
+          resizeMode="cover"
+          containerClassName="h-full w-full"
+          placeholderClassName="rounded-lg bg-[#C8C8CC]"
+          imageClassName="h-full w-full rounded-lg"
+        />
       </View>
     </View>
   );
