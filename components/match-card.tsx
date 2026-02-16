@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { Typography } from "./ui/typography";
 
 type MatchCardProps = {
-  date: string | null;
+  beginAt: string | null;
   onPress: () => void;
   league: string;
   serie: string;
@@ -15,19 +15,16 @@ type MatchCardProps = {
 };
 
 export function MatchCard({
-  date,
+  beginAt,
   onPress,
   league,
   serie,
-  live = false,
   homeTeamName,
   homeTeamImageUrl,
   awayTeamName,
   awayTeamImageUrl,
 }: MatchCardProps) {
-  const formattedDate = date
-    ? date?.split("/")[0] + date?.split("/")[0]
-    : "N/A";
+  const isLive = new Date(beginAt || "") < new Date();
 
   return (
     <Pressable
@@ -37,11 +34,11 @@ export function MatchCard({
       <View
         className={twMerge(
           "absolute right-0 top-0 rounded-tr-2xl bg-[#FAFAFA]/20 rounded-bl-2xl p-2",
-          live && "bg-[#F42A35]",
+          isLive && "bg-[#F42A35]",
         )}
       >
         <Typography weight="bold" className="text-xs text-foreground">
-          {live ? "AGORA" : formattedDate}
+          {isLive ? "AGORA" : "10/01"}
         </Typography>
       </View>
 

@@ -1,10 +1,17 @@
 import { useCurrentMatches } from "@/hooks/queries/use-current-matches";
+import { CurrentMatch } from "@/hooks/queries/use-current-matches/types";
+import { useUpcomingMatches } from "@/hooks/queries/use-upcoming-matches";
+import { UpcomingMatch } from "@/hooks/queries/use-upcoming-matches/types";
 import { useRouter } from "expo-router";
+
+type Matches = CurrentMatch & UpcomingMatch;
 
 export function useMatchesViewModel() {
   const router = useRouter();
   const { currentMatches, isCurrentMatchesError, isCurrentMatchesLoading } =
     useCurrentMatches();
+  const { upcomingMatches, isUpcomingMatchesError, isUpcomingMatchesLoading } =
+    useUpcomingMatches();
 
   function handleMatchPress(matchId: number) {
     router.push({
@@ -14,10 +21,17 @@ export function useMatchesViewModel() {
       },
     });
   }
+
+  const matches: Matches[] = [];
+
+  if (Array.isArray(currentMatches) && Array.isArray(upcomingMatches)) {
+    matches.push(...currentMatches, ...upcomingMatches);
+  }
+
   return {
-    currentMatches,
-    isCurrentMatchesError,
-    isCurrentMatchesLoading,
+    matches,
+    isMatchesError: isCurrentMatchesError || isUpcomingMatchesError,
+    isMatchesLoading: isCurrentMatchesLoading || isUpcomingMatchesLoading,
     handleMatchPress,
   };
 }
