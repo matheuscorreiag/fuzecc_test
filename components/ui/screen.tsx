@@ -22,8 +22,8 @@ export function Screen({
 
       <View
         className={twMerge(
-          "flex-1 bg-background px-page mt-6",
-          hidePadding && "px-0",
+          "flex-1 bg-background px-0 mt-6",
+          !hidePadding && "px-page",
         )}
       >
         {children}
