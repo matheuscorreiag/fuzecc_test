@@ -1,4 +1,5 @@
-import { Image, View } from "react-native";
+import { View } from "react-native";
+import { TeamBadge } from "./team-badge";
 import { Typography } from "./ui/typography";
 
 type OpponentsProps = {
@@ -7,6 +8,7 @@ type OpponentsProps = {
   awayTeamName?: string | null;
   awayTeamImageUrl?: string | null;
 };
+
 export function Opponents({
   homeTeamName,
   homeTeamImageUrl,
@@ -15,37 +17,16 @@ export function Opponents({
 }: OpponentsProps) {
   return (
     <View className="flex-row items-center gap-5 justify-center">
-      <View className="items-center gap-2.5 w-[90px]">
-        {!homeTeamImageUrl && (
-          <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
-        )}
-        {!!homeTeamImageUrl && (
-          <Image
-            className="size-[60px]"
-            src={homeTeamImageUrl}
-            resizeMode="contain"
-          />
-        )}
-        <Typography className="text-foreground max-w-[100px]" numberOfLines={1}>
+      <View className="w-[90px] items-center gap-2.5">
+        <TeamBadge imageUrl={homeTeamImageUrl} />
+        <Typography className="max-w-[100px] text-foreground" numberOfLines={1}>
           {homeTeamName}
         </Typography>
       </View>
       <Typography className="text-foreground/50">vs</Typography>
-      <View className="items-center gap-2.5 w-[90px]">
-        {!awayTeamImageUrl && (
-          <View className="rounded-full size-[60px] bg-[#C4C4C4]" />
-        )}
-        {!!awayTeamImageUrl && (
-          <Image
-            className="size-[60px]"
-            src={awayTeamImageUrl}
-            resizeMode="contain"
-          />
-        )}
-        <Typography
-          className="text-foreground max-w-[100px] "
-          numberOfLines={1}
-        >
+      <View className="w-[90px] items-center gap-2.5">
+        <TeamBadge imageUrl={awayTeamImageUrl} />
+        <Typography className="max-w-[100px] text-foreground" numberOfLines={1}>
           {awayTeamName}
         </Typography>
       </View>
