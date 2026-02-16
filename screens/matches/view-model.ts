@@ -8,10 +8,21 @@ type Matches = CurrentMatch & UpcomingMatch;
 
 export function useMatchesViewModel() {
   const router = useRouter();
-  const { currentMatches, isCurrentMatchesError, isCurrentMatchesLoading } =
-    useCurrentMatches();
-  const { upcomingMatches, isUpcomingMatchesError, isUpcomingMatchesLoading } =
-    useUpcomingMatches();
+  const {
+    currentMatches,
+    isCurrentMatchesError,
+    isCurrentMatchesLoading,
+    isCurrentMatchesRefetching,
+    refetchCurrentMatches,
+  } = useCurrentMatches();
+
+  const {
+    upcomingMatches,
+    isUpcomingMatchesError,
+    isUpcomingMatchesLoading,
+    isUpcomingMatchesRefetching,
+    refetchUpcomingMatches,
+  } = useUpcomingMatches();
 
   function handleMatchPress(matchId: number) {
     router.push({
@@ -20,6 +31,10 @@ export function useMatchesViewModel() {
         id: matchId,
       },
     });
+  }
+
+  async function onRefresh() {
+    await Promise.all([refetchCurrentMatches(), refetchUpcomingMatches()]);
   }
 
   const matches: Matches[] = [];
@@ -32,6 +47,8 @@ export function useMatchesViewModel() {
     matches,
     isMatchesError: isCurrentMatchesError || isUpcomingMatchesError,
     isMatchesLoading: isCurrentMatchesLoading || isUpcomingMatchesLoading,
+    isRefreshing: isUpcomingMatchesRefetching || isCurrentMatchesRefetching,
     handleMatchPress,
+    onRefresh,
   };
 }

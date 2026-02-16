@@ -9,7 +9,7 @@ async function getUpcomingMatches() {
 }
 
 export function useUpcomingMatches() {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch, isRefetching } = useQuery({
     queryKey: ["upcoming-matches"],
     queryFn: getUpcomingMatches,
   });
@@ -18,5 +18,7 @@ export function useUpcomingMatches() {
     upcomingMatches: data,
     isUpcomingMatchesLoading: isLoading,
     isUpcomingMatchesError: isError,
+    refetchUpcomingMatches: refetch,
+    isUpcomingMatchesRefetching: isRefetching,
   };
 }

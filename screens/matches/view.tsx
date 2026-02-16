@@ -1,10 +1,25 @@
+import { LoadingSpinner } from "@/components/loading-spinner";
 import { MatchCard } from "@/components/match-card";
 import { Screen } from "@/components/ui/screen";
 import { FlashList } from "@shopify/flash-list";
 import { useMatchesViewModel } from "./view-model";
 
 export function MatchesView() {
-  const { matches, handleMatchPress } = useMatchesViewModel();
+  const {
+    matches,
+    handleMatchPress,
+    isRefreshing,
+    onRefresh,
+    isMatchesLoading,
+  } = useMatchesViewModel();
+
+  if (isMatchesLoading) {
+    return (
+      <Screen title="Partidas">
+        <LoadingSpinner />
+      </Screen>
+    );
+  }
 
   return (
     <Screen title="Partidas">
@@ -12,6 +27,8 @@ export function MatchesView() {
         data={matches}
         keyExtractor={(match) => match.id.toString()}
         showsVerticalScrollIndicator={false}
+        refreshing={isRefreshing}
+        onRefresh={onRefresh}
         renderItem={({ item: match }) => (
           <MatchCard
             beginAt={match.begin_at}
