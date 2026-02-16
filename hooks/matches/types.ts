@@ -139,7 +139,7 @@ export type MatchWinner = Nullable<{
   type?: PandaEntityType;
 }>;
 
-export type CurrentMatch = {
+export type Match = {
   begin_at: Nullable<string>;
   detailed_stats: boolean;
   draw: boolean;

@@ -1,9 +1,9 @@
 import { client } from "@/libs/api/axios-client";
 import { useQuery } from "@tanstack/react-query";
-import { CurrentMatch } from "./types";
+import { Match } from "../matches/types";
 
 async function getCurrentMatches() {
-  const response = await client.get<CurrentMatch[]>("/csgo/matches/running");
+  const response = await client.get<Match[]>("/csgo/matches/running");
 
   return response.data;
 }
