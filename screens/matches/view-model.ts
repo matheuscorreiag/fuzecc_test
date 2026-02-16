@@ -21,11 +21,13 @@ export function useMatchesViewModel() {
     refetchUpcomingMatches,
   } = useUpcomingMatches();
 
-  function handleMatchPress(matchId: number) {
+  function handleMatchPress(matchId: number, league: string, serie: string) {
+    const formattedQuery = `${league} ${serie}`;
     router.push({
       pathname: "/matches/[id]",
       params: {
         id: matchId,
+        query: formattedQuery,
       },
     });
   }
