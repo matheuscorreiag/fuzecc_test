@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { twMerge } from "tailwind-merge";
 import { Header } from "./header";
@@ -19,14 +20,14 @@ export function Screen({
     <SafeAreaView className="flex-1 bg-background">
       <Header title={title} variant={type} />
 
-      <SafeAreaView
+      <View
         className={twMerge(
-          "flex-1 bg-background px-page",
+          "flex-1 bg-background px-page mt-6",
           hidePadding && "px-0",
         )}
       >
         {children}
-      </SafeAreaView>
+      </View>
     </SafeAreaView>
   );
 }
