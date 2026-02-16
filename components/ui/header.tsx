@@ -32,10 +32,10 @@ export function Header({
       {variant === "inner" && (
         <Pressable
           hitSlop={8}
-          className="absolute left-4"
-          onPress={onBackPress ?? router.back}
+          className="absolute left-4 z-10 p-1"
+          onPress={() => (onBackPress ? onBackPress() : router.back())}
         >
-          <ArrowLeft size={24} color={colors.foreground} />
+          <ArrowLeft size={24} color={colors.foreground} pointerEvents="none" />
         </Pressable>
       )}
 
