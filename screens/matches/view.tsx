@@ -36,13 +36,11 @@ export function MatchesView() {
             beginAt={match.begin_at}
             league={match.league.name}
             serie={match.serie.name}
-            homeTeamName={match.opponents[0].opponent?.name}
-            homeTeamImageUrl={match.opponents[0].opponent?.image_url}
-            awayTeamName={match.opponents[1].opponent?.name}
-            awayTeamImageUrl={match.opponents[1].opponent?.image_url}
-            onPress={() =>
-              handleMatchPress(match.id, match.league.name, match.serie.name)
-            }
+            homeTeamName={match?.opponents[0]?.opponent?.name}
+            homeTeamImageUrl={match?.opponents[0]?.opponent?.image_url}
+            awayTeamName={match?.opponents[1]?.opponent?.name}
+            awayTeamImageUrl={match?.opponents[1]?.opponent?.image_url}
+            onPress={() => handleMatchPress(match.id)}
           />
         )}
       />
