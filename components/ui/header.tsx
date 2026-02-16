@@ -1,8 +1,9 @@
 import { colors } from "@/theme/colors";
 import { useRouter } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { twMerge } from "tailwind-merge";
+import { Typography } from "./typography";
 
 const variants = {
   initial: {
@@ -38,14 +39,15 @@ export function Header({
         </Pressable>
       )}
 
-      <Text
+      <Typography
+        weight="medium"
         className={twMerge(
           "text-foreground flex-1 font-medium",
           variants[variant].text,
         )}
       >
         {title}
-      </Text>
+      </Typography>
     </View>
   );
 }
