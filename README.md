@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+# Fuzecc Test App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native app built with Expo to list CS:GO matches and match details using PandaScore APIs.
 
-## Get started
+## Project structure explained
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+.
+|-- app/                     # Expo Router pages (routing layer only)
+|-- screens/                 # Screen composition + view models
+|-- hooks/
+|   `-- queries/             # React Query hooks
+|-- components/              # Reusable UI components
+|-- libs/                    # Lib config and initialization
+|   |-- api/                 # Axios client + QueryClient
+|   `-- dayjs/               # Date utilities and formatting
+|-- models/                  # Domain types
+|-- theme/                   # Design tokens
+|-- assets/                  # Images and static resources
+|-- env.ts                   # Environment validation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Architecture (MVVM)
 
-## Learn more
+- Routing layer in `app/` delegates rendering to `screens/`.
+- Screens use a `view.tsx` + `view-model.ts` split:
+  - `view.tsx`: layout/presentation only
+  - `view-model.ts`: business logic, orchestration, and side effects
+- Data fetching and cache control live in `hooks/queries/` with React Query.
+- HTTP configuration is centralized in `libs/api/axios-client.ts`.
+- Domain contracts are declared in `models/` to keep typing explicit and reusable.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Main tools
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- [Expo](https://expo.dev/) + [Expo Router](https://docs.expo.dev/router/introduction/)
+- [TanStack Query](https://tanstack.com/query/latest) for data fetching and cache control
+- [Axios](https://axios-http.com/) for api client communication
+- [NativeWind](https://www.nativewind.dev/) + [Tailwind CSS](https://tailwindcss.com/)
+- [FlashList](https://shopify.github.io/flash-list/) for performant lists
+- [Day.js](https://day.js.org/) for date format handling
+- [Zod](https://zod.dev/) for environment validation
 
-## Join the community
+## Environment variables
 
-Join our community of developers creating universal apps.
+Create `.env` in the project root (or copy from `.env.example`) with:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+EXPO_PUBLIC_PANDA_SCORE_API_BASE_URL=...
+EXPO_PUBLIC_PANDA_SCORE_API_TOKEN=...
+```
+
+## How to run
+
+### Prerequisites
+
+- Bun installed
+- Xcode + iOS Simulator (for iOS)
+- Android Studio + Android emulator (for Android)
+
+### Install dependencies
+
+```bash
+bun install
+```
+
+### Run on iOS
+
+```bash
+bun run prebuild:ios
+bun run ios
+```
+
+### Run on Android
+
+```bash
+expo prebuild --platform android
+bun run android
+```
+
+## APK
+
+Download APK: [Generated APK link (update this URL)](https://example.com/path-to-generated.apk)
