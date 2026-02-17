@@ -12,6 +12,7 @@ export function MatchesView() {
     isRefreshing,
     onRefresh,
     isMatchesLoading,
+    onEndReached,
   } = useMatchesViewModel();
 
   if (isMatchesLoading) {
@@ -31,6 +32,8 @@ export function MatchesView() {
         ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         refreshing={isRefreshing}
         onRefresh={onRefresh}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.5}
         renderItem={({ item: match }) => (
           <MatchCard
             beginAt={match.begin_at}

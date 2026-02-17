@@ -1,6 +1,10 @@
 import { useCurrentMatches } from "@/hooks/queries/use-current-matches";
 import { useUpcomingMatches } from "@/hooks/queries/use-upcoming-matches";
 import { Match } from "@/models/match";
+import {
+  InfiniteData,
+  InfiniteQueryObserverResult,
+} from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 
 export function useMatchesViewModel() {
@@ -11,6 +15,9 @@ export function useMatchesViewModel() {
     isCurrentMatchesLoading,
     isCurrentMatchesRefetching,
     refetchCurrentMatches,
+    hasNextCurrentMatchesPage,
+    fetchNextCurrentMatchesPage,
+    isFetchingNextCurrentMatchesPage,
   } = useCurrentMatches();
 
   const {
@@ -19,6 +26,9 @@ export function useMatchesViewModel() {
     isUpcomingMatchesLoading,
     isUpcomingMatchesRefetching,
     refetchUpcomingMatches,
+    hasNextUpcomingMatchesPage,
+    fetchNextUpcomingMatchesPage,
+    isFetchingNextUpcomingMatchesPage,
   } = useUpcomingMatches();
 
   function handleMatchPress(matchId: number) {
@@ -34,18 +44,43 @@ export function useMatchesViewModel() {
     await Promise.all([refetchCurrentMatches(), refetchUpcomingMatches()]);
   }
 
+  async function onEndReached() {
+    if (isFetchingNextCurrentMatchesPage || isFetchingNextUpcomingMatchesPage) {
+      return;
+    }
+
+    const requests: Promise<
+      InfiniteQueryObserverResult<InfiniteData<Match[], unknown>, Error>
+    >[] = [];
+
+    if (hasNextCurrentMatchesPage) {
+      requests.push(fetchNextCurrentMatchesPage());
+    }
+
+    if (hasNextUpcomingMatchesPage) {
+      requests.push(fetchNextUpcomingMatchesPage());
+    }
+
+    if (requests.length === 0) {
+      return;
+    }
+
+    await Promise.all(requests);
+  }
+
   const matches: Match[] = [];
 
-  if (Array.isArray(currentMatches) && Array.isArray(upcomingMatches)) {
-    matches.push(...currentMatches, ...upcomingMatches);
-  }
+  matches.push(...currentMatches, ...upcomingMatches);
 
   return {
     matches,
     isMatchesError: isCurrentMatchesError || isUpcomingMatchesError,
     isMatchesLoading: isCurrentMatchesLoading || isUpcomingMatchesLoading,
     isRefreshing: isUpcomingMatchesRefetching || isCurrentMatchesRefetching,
+    isLoadingMore:
+      isFetchingNextCurrentMatchesPage || isFetchingNextUpcomingMatchesPage,
     handleMatchPress,
     onRefresh,
+    onEndReached,
   };
 }
