@@ -5,9 +5,12 @@ import {
   Roboto_700Bold,
   useFonts,
 } from "@expo-google-fonts/roboto";
-import { Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
 import "react-native-reanimated";
 import "../global.css";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -15,6 +18,14 @@ export default function RootLayout() {
     Roboto_500Medium,
     Roboto_400Regular,
   });
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      SplashScreen.hideAsync();
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   if (!loaded && !error) {
     return null;

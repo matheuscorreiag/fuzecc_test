@@ -23,7 +23,7 @@ export function useMatchesViewModel() {
 
   function handleMatchPress(matchId: number) {
     router.push({
-      pathname: "/matches/[id]",
+      pathname: "/(matches)/[id]",
       params: {
         id: matchId,
       },
