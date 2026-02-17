@@ -1,18 +1,16 @@
-import { Nullable } from "./common";
-
 type Players = {
   active: boolean;
-  age: Nullable<number>;
-  birthday: Nullable<string>;
-  first_name: Nullable<string>;
+  age: number | null;
+  birthday: string | null;
+  first_name: string | null;
   id: number;
-  image_url: Nullable<string>;
-  last_name: Nullable<string>;
+  image_url: string | null;
+  last_name: string | null;
   modified_at: string;
   name: string;
-  nationality: Nullable<string>;
-  role: Nullable<string>;
-  slug: Nullable<string>;
+  nationality: string | null;
+  role: string | null;
+  slug: string | null;
 };
 
 export type Team = {
@@ -22,12 +20,12 @@ export type Team = {
     name: string;
     slug: string;
   };
-  dark_mode_image_url: Nullable<string>;
+  dark_mode_image_url: string | null;
   id: number;
-  image_url: Nullable<string>;
-  location: Nullable<string>;
+  image_url: string | null;
+  location: string | null;
   modified_at: string;
   name: string;
   players: Players[];
-  slug: Nullable<string>;
+  slug: string | null;
 };
