@@ -49,6 +49,7 @@ React Native app built with Expo to list CS:GO matches and match details using P
 - [FlashList](https://shopify.github.io/flash-list/) for performant lists
 - [Day.js](https://day.js.org/) for date format handling
 - [Zod](https://zod.dev/) for environment validation
+- [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/) for testing
 
 ## Environment variables
 
@@ -83,6 +84,6 @@ bun run ios
 ### Run on Android
 
 ```bash
-expo prebuild --platform android
+bun run prebuild:android
 bun run android
 ```
