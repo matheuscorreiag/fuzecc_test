@@ -5,7 +5,7 @@ import { Pressable, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 import { Typography } from "./typography";
 
-const variants = {
+export const headerVariants = {
   initial: {
     text: "text-[32px]",
     container: "justify-start",
@@ -18,7 +18,7 @@ const variants = {
 
 type HeaderProps = {
   title: string;
-  variant?: keyof typeof variants;
+  variant?: keyof typeof headerVariants;
   onBackPress?: () => void;
 };
 
@@ -33,7 +33,7 @@ export function Header({
     <View
       className={twMerge(
         "flex-row items-center justify-start relative px-page",
-        variants[variant].container,
+        headerVariants[variant].container,
       )}
     >
       {variant === "inner" && (
@@ -56,7 +56,7 @@ export function Header({
         weight="medium"
         className={twMerge(
           "text-foreground flex-1 max-w-64",
-          variants[variant].text,
+          headerVariants[variant].text,
         )}
       >
         {title}

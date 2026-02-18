@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { twMerge } from "tailwind-merge";
-import { Header } from "./header";
+import { Header, headerVariants } from "./header";
 
 type ScreenProps = {
   title: string;
   children: ReactNode;
   hidePadding?: boolean;
-  type?: "initial" | "inner";
+  type?: keyof typeof headerVariants;
 };
 export function Screen({
   title,
