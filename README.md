@@ -8,6 +8,10 @@ React Native app built with Expo to list CS:GO matches and match details using P
 - [iOS demo](https://drive.google.com/file/d/1hAA6BA9_Sa_8aV2DCHVamZBAMSzpWL-9/view?usp=sharing)
 - [APK](https://drive.google.com/file/d/1TaP7HiEw2uy8Gj07m9ruunAp1cQi3qEl/view?usp=sharing)
 
+## Coverage
+
+<img alt="coverage" title="coverage-report" src=".github/coverage.png" width="100%" />
+
 ## Project structure explained
 
 ```text
