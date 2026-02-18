@@ -55,7 +55,7 @@ export function Header({
       <Typography
         weight="medium"
         className={twMerge(
-          "text-foreground flex-1 font-medium max-w-64",
+          "text-foreground flex-1 max-w-64",
           variants[variant].text,
         )}
       >
