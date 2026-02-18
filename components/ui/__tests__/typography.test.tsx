@@ -11,29 +11,28 @@ describe("Typography", () => {
   it("should apply Roboto_400Regular font for normal weight (default)", () => {
     const { getByText } = render(<Typography>Text</Typography>);
 
-    expect(getByText("Text").props.style).toMatchObject({
-      fontFamily: "Roboto_400Regular",
-    });
+    expect(getByText("Text")).toHaveProp(
+      "style",
+      expect.objectContaining({ fontFamily: "Roboto_400Regular" }),
+    );
   });
 
   it("should apply Roboto_500Medium font for medium weight", () => {
-    const { getByText } = render(
-      <Typography weight="medium">Text</Typography>,
-    );
+    const { getByText } = render(<Typography weight="medium">Text</Typography>);
 
-    expect(getByText("Text").props.style).toMatchObject({
-      fontFamily: "Roboto_500Medium",
-    });
+    expect(getByText("Text")).toHaveProp(
+      "style",
+      expect.objectContaining({ fontFamily: "Roboto_500Medium" }),
+    );
   });
 
   it("should apply Roboto_700Bold font for bold weight", () => {
-    const { getByText } = render(
-      <Typography weight="bold">Text</Typography>,
-    );
+    const { getByText } = render(<Typography weight="bold">Text</Typography>);
 
-    expect(getByText("Text").props.style).toMatchObject({
-      fontFamily: "Roboto_700Bold",
-    });
+    expect(getByText("Text")).toHaveProp(
+      "style",
+      expect.objectContaining({ fontFamily: "Roboto_700Bold" }),
+    );
   });
 
   it("should forward additional Text props", () => {
@@ -41,6 +40,6 @@ describe("Typography", () => {
       <Typography numberOfLines={1}>Text</Typography>,
     );
 
-    expect(getByText("Text").props.numberOfLines).toBe(1);
+    expect(getByText("Text")).toHaveProp("numberOfLines", 1);
   });
 });

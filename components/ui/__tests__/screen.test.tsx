@@ -8,10 +8,6 @@ jest.mock("expo-router", () => ({
   })),
 }));
 
-jest.mock("react-native-safe-area-context", () => ({
-  SafeAreaView: ({ children }: { children: React.ReactNode }) => children,
-}));
-
 describe("Screen", () => {
   it("should render the title", () => {
     const { getByText } = render(

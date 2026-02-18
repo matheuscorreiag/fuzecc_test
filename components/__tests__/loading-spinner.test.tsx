@@ -11,6 +11,6 @@ describe("LoadingSpinner", () => {
   it("should render the ActivityIndicator with large size", () => {
     const { getByTestId } = render(<LoadingSpinner />);
 
-    expect(getByTestId("loading-spinner").props.size).toBe("large");
+    expect(getByTestId("loading-spinner")).toHaveProp("size", "large");
   });
 });
