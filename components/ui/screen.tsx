@@ -17,7 +17,7 @@ export function Screen({
   type = "initial",
 }: ScreenProps) {
   return (
-    <SafeAreaView className="flex-1 bg-background">
+    <SafeAreaView className={twMerge("flex-1 bg-background pt-6")}>
       <Header title={title} variant={type} />
 
       <View
