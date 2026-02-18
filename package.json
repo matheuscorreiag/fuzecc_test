@@ -11,7 +11,8 @@
     "prebuild:ios": "expo prebuild --platform ios",
     "prebuild:android": "expo prebuild --platform ios",
     "prebuild:all": "expo prebuild --platform all",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.4.2",
@@ -51,10 +52,14 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.91.4",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "29.5.14",
     "@types/react": "~19.1.0",
     "babel-preset-expo": "^54.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "jest": "~29.7.0",
+    "jest-expo": "~54.0.17",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.9.2"
