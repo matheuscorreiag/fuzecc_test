@@ -41,8 +41,14 @@ export function Header({
           hitSlop={8}
           className="absolute left-4 z-10 p-1"
           onPress={() => (onBackPress ? onBackPress() : router.back())}
+          testID="back-button"
         >
-          <ArrowLeft size={24} color={colors.foreground} pointerEvents="none" />
+          <ArrowLeft
+            size={24}
+            color={colors.foreground}
+            pointerEvents="none"
+            testID="back-button-icon"
+          />
         </Pressable>
       )}
 

@@ -21,6 +21,7 @@ export function Screen({
       <Header title={title} variant={type} />
 
       <View
+        testID="screen-content"
         className={twMerge(
           "flex-1 bg-background px-0 mt-6",
           !hidePadding && "px-page",

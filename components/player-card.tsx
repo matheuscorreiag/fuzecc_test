@@ -9,6 +9,7 @@ export type PlayerCardProps = {
   imageUrl?: string | null;
   className?: string;
   isOpponent?: boolean;
+  testID?: string;
 };
 
 export function PlayerCard({
@@ -17,9 +18,11 @@ export function PlayerCard({
   imageUrl,
   className,
   isOpponent = false,
+  testID,
 }: PlayerCardProps) {
   return (
     <View
+      testID={testID}
       className={twMerge(
         "relative h-[54px] w-full bg-card rounded-r-xl",
         isOpponent && "rounded-r-none rounded-l-xl",
