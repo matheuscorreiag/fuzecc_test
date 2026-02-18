@@ -2,6 +2,12 @@
 
 React Native app built with Expo to list CS:GO matches and match details using PandaScore APIs.
 
+## Demo
+
+- [Android demo](https://drive.google.com/file/d/1ljRsRnKqcYwujdZ2xkMiw_ip-2qBQTlH/view?usp=sharing)
+- [iOS demo](https://drive.google.com/file/d/1hAA6BA9_Sa_8aV2DCHVamZBAMSzpWL-9/view?usp=sharing)
+- [APK](https://drive.google.com/file/d/1TaP7HiEw2uy8Gj07m9ruunAp1cQi3qEl/view?usp=sharing)
+
 ## Project structure explained
 
 ```text
@@ -76,7 +82,3 @@ bun run ios
 expo prebuild --platform android
 bun run android
 ```
-
-## APK
-
-Download APK: [Generated APK link (update this URL)](https://example.com/path-to-generated.apk)
