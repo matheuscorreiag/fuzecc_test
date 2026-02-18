@@ -1,4 +1,4 @@
-type Players = {
+type Player = {
   active: boolean;
   age: number | null;
   birthday: string | null;
@@ -26,6 +26,6 @@ export type Team = {
   location: string | null;
   modified_at: string;
   name: string;
-  players: Players[];
+  players: Player[];
   slug: string | null;
 };
