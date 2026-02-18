@@ -20,16 +20,10 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    if (loaded || error) {
       SplashScreen.hideAsync();
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (!loaded && !error) {
-    return null;
-  }
+    }
+  }, [loaded, error]);
 
   return (
     <Providers>
