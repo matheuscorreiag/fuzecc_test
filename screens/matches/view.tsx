@@ -34,6 +34,7 @@ export function MatchesView() {
         onRefresh={onRefresh}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
+        ListFooterComponent={() => <View style={{ height: 12 }} />}
         renderItem={({ item: match }) => (
           <MatchCard
             beginAt={match.begin_at}
