@@ -1,19 +1,22 @@
 import { Text, TextProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
+const typographyVariants = {
+  normal: {
+    fontFamily: "Roboto_400Regular",
+  },
+  medium: {
+    fontFamily: "Roboto_500Medium",
+  },
+  bold: {
+    fontFamily: "Roboto_700Bold",
+  },
+} as const;
+
 type TypographyProps = TextProps & {
-  weight?: "normal" | "medium" | "bold";
+  weight?: keyof typeof typographyVariants;
 };
 
-function getFontFamily(weight: "normal" | "medium" | "bold") {
-  const fontWeights = {
-    normal: "Roboto_400Regular",
-    medium: "Roboto_500Medium",
-    bold: "Roboto_700Bold",
-  };
-
-  return fontWeights[weight];
-}
 export function Typography({
   className,
   weight = "normal",
@@ -23,7 +26,7 @@ export function Typography({
     <Text
       className={twMerge(className)}
       style={{
-        fontFamily: getFontFamily(weight),
+        fontFamily: typographyVariants[weight].fontFamily,
       }}
       {...props}
     >
