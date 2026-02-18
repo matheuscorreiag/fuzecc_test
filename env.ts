@@ -5,7 +5,11 @@ const envSchema = z.object({
   EXPO_PUBLIC_PANDA_SCORE_API_TOKEN: z.string(),
 });
 
-const envValidation = envSchema.safeParse(process.env);
+const envValidation = envSchema.safeParse({
+  EXPO_PUBLIC_PANDA_SCORE_API_BASE_URL:
+    process.env.EXPO_PUBLIC_PANDA_SCORE_API_BASE_URL,
+  EXPO_PUBLIC_PANDA_SCORE_API_TOKEN: process.env.EXPO_PUBLIC_PANDA_SCORE_API_TOKEN,
+});
 
 if (envValidation.error) {
   throw new Error(JSON.stringify(envValidation.error, null, 2));
