@@ -42,7 +42,7 @@ export function MatchIdView({ matchId }: MatchIdViewProps) {
         />
 
         {match?.begin_at && (
-          <View className="mt-4 items-center justify-center">
+          <View className="my-5 items-center justify-center">
             <Typography weight="bold" className="text-foreground text-sm">
               {formatMatchDate(match.begin_at)}
             </Typography>

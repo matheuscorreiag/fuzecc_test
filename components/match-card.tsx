@@ -3,29 +3,32 @@ import { formatMatchDate } from "@/libs/dayjs/format-match-date";
 import { Pressable, View } from "react-native";
 import { twMerge } from "tailwind-merge";
 import { Opponents } from "./opponents";
+import { Image } from "./ui/image";
 import { Typography } from "./ui/typography";
 
 type MatchCardProps = {
   beginAt: string | null;
   onPress: () => void;
-  league: string;
-  serie: string;
+  leagueName: string;
+  serieName: string;
   homeTeamName?: string | null;
   homeTeamImageUrl?: string | null;
   awayTeamName?: string | null;
   awayTeamImageUrl?: string | null;
   live?: boolean;
+  leagueImageUrl: string | null;
 };
 
 export function MatchCard({
   beginAt,
   onPress,
-  league,
-  serie,
+  leagueName,
+  serieName,
   homeTeamName,
   homeTeamImageUrl,
   awayTeamName,
   awayTeamImageUrl,
+  leagueImageUrl,
 }: MatchCardProps) {
   const matchDate = formatMatchDate(beginAt);
   const isLive =
@@ -54,10 +57,15 @@ export function MatchCard({
         awayTeamImageUrl={awayTeamImageUrl}
       />
 
-      <View className="border-t items-center border-gray-300 h-8 absolute flex-row left-0 bottom-0 w-full px-4 py-2">
-        <View className="size-4 rounded-full bg-white mr-2" />
+      <View className="border-t gap-x-2 items-center border-gray-500 h-8 absolute flex-row left-0 bottom-0 w-full px-4 py-2">
+        <Image
+          imageUrl={leagueImageUrl}
+          containerClassName="rounded-full size-4"
+          imageClassName="rounded-full size-4"
+          placeholderClassName="rounded-full size-4"
+        />
         <Typography className="text-xs text-foreground truncate w-full whitespace-nowrap">
-          {league} {serie}
+          {leagueName} {serieName}
         </Typography>
       </View>
     </Pressable>

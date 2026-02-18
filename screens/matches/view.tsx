@@ -37,13 +37,14 @@ export function MatchesView() {
         renderItem={({ item: match }) => (
           <MatchCard
             beginAt={match.begin_at}
-            league={match.league.name}
-            serie={match.serie.name}
+            leagueName={match.league.name}
+            serieName={match.serie.name}
             homeTeamName={match?.opponents[0]?.opponent?.name}
             homeTeamImageUrl={match?.opponents[0]?.opponent?.image_url}
             awayTeamName={match?.opponents[1]?.opponent?.name}
             awayTeamImageUrl={match?.opponents[1]?.opponent?.image_url}
             onPress={() => handleMatchPress(match.id)}
+            leagueImageUrl={match.league.image_url}
           />
         )}
       />
