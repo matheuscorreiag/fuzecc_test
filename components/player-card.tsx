@@ -20,7 +20,11 @@ export function PlayerCard({
 }: PlayerCardProps) {
   return (
     <View
-      className={twMerge("relative h-[54px] w-full bg-[#2A2941]", className)}
+      className={twMerge(
+        "relative h-[54px] w-full bg-card rounded-r-xl",
+        isOpponent && "rounded-r-none rounded-l-xl",
+        className,
+      )}
     >
       <View
         className={twMerge(
