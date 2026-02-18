@@ -59,8 +59,9 @@ export function MatchIdView({ matchId }: MatchIdViewProps) {
                 <View className="flex-1">
                   {homePlayer && (
                     <PlayerCard
-                      nickname={homePlayer?.name ?? "Nickname"}
-                      name={homePlayer?.name ?? "Nome Jogador"}
+                      nickname={homePlayer?.name}
+                      firstName={homePlayer?.first_name}
+                      lastName={homePlayer?.last_name}
                       imageUrl={homePlayer?.image_url}
                     />
                   )}
@@ -69,8 +70,9 @@ export function MatchIdView({ matchId }: MatchIdViewProps) {
                 <View className="flex-1">
                   {awayPlayer && (
                     <PlayerCard
-                      nickname={awayPlayer?.name ?? "Nickname"}
-                      name={awayPlayer?.name ?? "Nome Jogador"}
+                      nickname={awayPlayer?.name}
+                      firstName={awayPlayer?.first_name}
+                      lastName={awayPlayer?.last_name}
                       imageUrl={awayPlayer?.image_url}
                       isOpponent
                     />

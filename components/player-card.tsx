@@ -5,7 +5,8 @@ import { Typography } from "./ui/typography";
 
 export type PlayerCardProps = {
   nickname: string;
-  name: string;
+  firstName?: string | null;
+  lastName?: string | null;
   imageUrl?: string | null;
   className?: string;
   isOpponent?: boolean;
@@ -14,7 +15,8 @@ export type PlayerCardProps = {
 
 export function PlayerCard({
   nickname,
-  name,
+  firstName,
+  lastName,
   imageUrl,
   className,
   isOpponent = false,
@@ -43,10 +45,10 @@ export function PlayerCard({
           {nickname}
         </Typography>
         <Typography
-          className="mt-0.5 text-sm text-foreground/40"
+          className="mt-0.5 text-sm text-foreground/40 max-w-[60px]"
           numberOfLines={1}
         >
-          {name}
+          {firstName} {lastName}
         </Typography>
       </View>
 

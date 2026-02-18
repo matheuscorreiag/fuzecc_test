@@ -4,7 +4,8 @@ import { render } from "@testing-library/react-native";
 describe("PlayerCard", () => {
   const defaultProps = {
     nickname: "s1mple",
-    name: "Oleksandr Kostyliev",
+    firstName: "Oleksandr",
+    lastName: "Kostyliev",
   };
 
   it("should render the nickname", () => {
