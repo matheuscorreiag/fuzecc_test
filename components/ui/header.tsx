@@ -8,9 +8,11 @@ import { Typography } from "./typography";
 const variants = {
   initial: {
     text: "text-[32px]",
+    container: "justify-start",
   },
   inner: {
     text: "text-lg text-center",
+    container: "justify-center",
   },
 } as const;
 
@@ -28,7 +30,12 @@ export function Header({
   const router = useRouter();
 
   return (
-    <View className="flex-row items-center relative px-page">
+    <View
+      className={twMerge(
+        "flex-row items-center justify-start relative px-page",
+        variants[variant].container,
+      )}
+    >
       {variant === "inner" && (
         <Pressable
           hitSlop={8}
@@ -42,7 +49,7 @@ export function Header({
       <Typography
         weight="medium"
         className={twMerge(
-          "text-foreground flex-1 font-medium",
+          "text-foreground flex-1 font-medium max-w-64",
           variants[variant].text,
         )}
       >
