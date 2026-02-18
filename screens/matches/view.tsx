@@ -2,7 +2,7 @@ import { LoadingSpinner } from "@/components/loading-spinner";
 import { MatchCard } from "@/components/match-card";
 import { Screen } from "@/components/ui/screen";
 import { FlashList } from "@shopify/flash-list";
-import { View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { useMatchesViewModel } from "./view-model";
 
 export function MatchesView() {
@@ -34,7 +34,11 @@ export function MatchesView() {
         onRefresh={onRefresh}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
-        ListFooterComponent={() => <View style={{ height: 12 }} />}
+        ListFooterComponent={() => (
+          <View className="mt-4">
+            <ActivityIndicator size="small" />
+          </View>
+        )}
         renderItem={({ item: match }) => (
           <MatchCard
             beginAt={match.begin_at}
